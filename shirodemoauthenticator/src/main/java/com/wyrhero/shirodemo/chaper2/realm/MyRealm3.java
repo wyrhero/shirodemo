@@ -6,11 +6,11 @@ import org.apache.shiro.realm.Realm;
 /**
  * 自定义的Realm
  * @author wyrhero
- * @date 20180222
+ * @date 20180223
  */
-public class MyRealm2 implements Realm{
-    private final String name = "MyRealm2";
-    private final String defaultUsername = "wang";
+public class MyRealm3 implements Realm{
+    private final String name = "MyRealm3";
+    private final String defaultUsername = "zhang";
     private final String defaultPassword = "123";
 
     @Override
@@ -37,6 +37,6 @@ public class MyRealm2 implements Realm{
             throw new IncorrectCredentialsException();
         }
         //如果没报错，身份认证成功，返回一个AuthenticationInfo实现
-        return new SimpleAuthenticationInfo(username,password,getName());
+        return new SimpleAuthenticationInfo(username+"@163.com",password,getName());
     }
 }
