@@ -1,4 +1,4 @@
-package com.wyrhero.shirodemo.chaper2.realm;
+package com.wyrhero.shirodemo.chapter2.realm;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.realm.Realm;

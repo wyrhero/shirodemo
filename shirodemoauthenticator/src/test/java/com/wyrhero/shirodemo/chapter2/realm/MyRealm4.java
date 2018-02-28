@@ -1,4 +1,4 @@
-package com.wyrhero.shirodemo.chaper2.realm;
+package com.wyrhero.shirodemo.chapter2.realm;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.realm.Realm;
@@ -8,8 +8,8 @@ import org.apache.shiro.realm.Realm;
  * @author wyrhero
  * @date 20180223
  */
-public class MyRealm3 implements Realm{
-    private final String name = "MyRealm3";
+public class MyRealm4 implements Realm{
+    private final String name = "MyRealm4";
     private final String defaultUsername = "zhang";
     private final String defaultPassword = "123";
 
@@ -37,6 +37,6 @@ public class MyRealm3 implements Realm{
             throw new IncorrectCredentialsException();
         }
         //如果没报错，身份认证成功，返回一个AuthenticationInfo实现
-        return new SimpleAuthenticationInfo(username+"@163.com",password,getName());
+        return new SimpleAuthenticationInfo(username,password,getName());
     }
 }

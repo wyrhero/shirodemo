@@ -34,7 +34,7 @@ public class AuthenticatorTest {
 
 
     /**
-     * 测试shiro的登录和授权
+     * 测试shiro的登录和认证
      */
     @Test
     public void testAllSuccessfulStrategyWithSuccess(){
@@ -47,7 +47,7 @@ public class AuthenticatorTest {
     }
 
     /**
-     * 测试shiro的登录后获取用户授权信息失败
+     * 测试shiro的登录后获取用户认证信息失败
      */
     @Test(expected=UnknownAccountException.class)
     public void testAllSuccessfulStrategyWithFail(){
@@ -56,7 +56,7 @@ public class AuthenticatorTest {
     }
 
     /**
-     * 测试shiro的授权器  最少一次成功
+     * 测试shiro的认证器  最少一次成功
      */
     @Test
     public void testAtLeastOneSuccessfulStrategyWithSuccess(){
@@ -69,11 +69,37 @@ public class AuthenticatorTest {
     }
 
     /**
-     * 测试shiro的授权器  取第一次身份成功
+     * 测试shiro的认证器  取第一次身份成功
      */
     @Test
     public void testFirstOneSuccessfulStrategyWithSuccess(){
         login("classpath:shiro-authenticator-first-success.ini");
+        Subject subject = SecurityUtils.getSubject();
+
+        //得到一个身份集合，其包含了第一个Realm验证成功的身份信息
+        PrincipalCollection principalCollection = subject.getPrincipals();
+        Assert.assertEquals(1, principalCollection.asList().size());
+    }
+
+    /**
+     * 测试shiro的认证器  至少2个认证通过
+     */
+    @Test
+    public void testAtLeastTwoStrategyWithSuccess(){
+        login("classpath:shiro-authenticator-atLeastTwo-success.ini");
+        Subject subject = SecurityUtils.getSubject();
+
+        //得到一个身份集合，其包含了第一个Realm验证成功的身份信息
+        PrincipalCollection principalCollection = subject.getPrincipals();
+        Assert.assertEquals(1, principalCollection.asList().size());
+    }
+
+    /**
+     * 测试shiro的认证器  有且只有一个可以认证
+     */
+    @Test
+    public void testOnlyOneStrategyWithSuccess(){
+        login("classpath:shiro-authenticator-onlyone-success.ini");
         Subject subject = SecurityUtils.getSubject();
 
         //得到一个身份集合，其包含了第一个Realm验证成功的身份信息
