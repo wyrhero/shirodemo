@@ -21,4 +21,13 @@ public class RoleTest extends BaseTest {
         Assert.assertFalse(result[2]);
 
     }
+
+    @Test
+    public void testCheckRole(){
+        login("classpath:shiro-role.ini","zhang","123");
+        //断言拥有角色:role1
+        subject().checkRole("role1");
+        //断言拥有角色：role1 and role3 失败抛出异常
+        subject().checkRoles("role1","role3");
+    }
 }
